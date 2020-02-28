@@ -4,10 +4,12 @@ defmodule WaterOnMars.LocationRater do
   and rate them based on the water concentration level in all surrounding locations and in the location itself.
   """
 
+  alias WaterOnMars.WaterConcentrationMap
+
   @type coordinates :: {integer(), integer()}
   @type score :: integer()
 
-  @spec rate_location(WaterOnMars.WaterConcentrationMap.t(), coordinates) :: score()
+  @spec rate_location(WaterConcentrationMap.t(), coordinates) :: score()
   def rate_location(water_concentration_map, coordinates) do
     coordinates
     |> surrounding_coordinates_including_itself()
@@ -20,6 +22,15 @@ defmodule WaterOnMars.LocationRater do
   end
 
   defp read_measurement(water_concentration_map, coordinates) do
-    WaterOnMars.WaterConcentrationMap.read_measurement(water_concentration_map, coordinates)
+    WaterConcentrationMap.read_measurement(water_concentration_map, coordinates)
+  end
+
+  @spec rate_all_locations(WaterConcentrationMap.t()) ::
+          list(%{coordinates: coordinates(), score: score()})
+  def rate_all_locations(%{grid_size: grid_size} = water_concentration_map) do
+    for x <- 0..(grid_size - 1),
+        y <- 0..(grid_size - 1) do
+      %{coordinates: {x, y}, score: rate_location(water_concentration_map, {x, y})}
+    end
   end
 end
