@@ -42,4 +42,13 @@ defmodule WaterOnMars.LocationRater do
     |> Enum.sort(&(&1.score >= &2.score))
     |> Enum.take(requested_results_number)
   end
+
+  @spec scores_grid(WaterConcentrationMap.t()) :: list(list(score()))
+  def scores_grid(%{grid_size: grid_size} = water_concentration_map) do
+    for y <- 0..(grid_size - 1) do
+      for x <- 0..(grid_size - 1) do
+        rate_location(water_concentration_map, {x, y})
+      end
+    end
+  end
 end
