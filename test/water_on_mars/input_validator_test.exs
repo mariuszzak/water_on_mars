@@ -41,13 +41,13 @@ defmodule WaterOnMars.InputValidatorTest do
                expected_error
     end
 
-    test "returns an error if any value in the raw_sensor_data is not from the range of 1 to 9" do
-      expected_error = {:error, "raw_sensor_data has to contain only values from 1 to 9"}
+    test "returns an error if any value in the raw_sensor_data is not from the range of 0 to 9" do
+      expected_error = {:error, "raw_sensor_data has to contain only values from 0 to 9"}
 
       assert InputValidator.call(%{@valid_input | raw_sensor_data: [1, 10, 3, 4, 5, 6, 7, 8, 9]}) ==
                expected_error
 
-      assert InputValidator.call(%{@valid_input | raw_sensor_data: [1, 0, 3, 4, 5, 6, 7, 8, 9]}) ==
+      assert InputValidator.call(%{@valid_input | raw_sensor_data: [1, -1, 3, 4, 5, 6, 7, 8, 9]}) ==
                expected_error
     end
   end

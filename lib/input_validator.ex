@@ -3,7 +3,7 @@ defmodule WaterOnMars.InputValidator do
   This module is responsible for validating the values in the parsed sensor dataset.
   """
 
-  @valid_water_concentration_level_range 1..9
+  @valid_water_concentration_level_range 0..9
 
   @spec call(WaterOnMars.InputParser.Input.t()) :: :ok | {:error, String.t()}
   def call(parsed_input) do
@@ -49,7 +49,7 @@ defmodule WaterOnMars.InputValidator do
         :ok
 
       false ->
-        {:error, "raw_sensor_data has to contain only values from 1 to 9"}
+        {:error, "raw_sensor_data has to contain only values from 0 to 9"}
     end
   end
 
