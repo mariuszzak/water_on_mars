@@ -1,21 +1,21 @@
 # WaterOnMars
 
-**TODO: Add description**
+To run the process sensor data you can run the following command:
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `water_on_mars` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:water_on_mars, "~> 0.1.0"}
-  ]
-end
+```
+mix water_on_mars.process_sensor_data "<<raw_sensor_data>>"
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/water_on_mars](https://hexdocs.pm/water_on_mars).
+For example:
 
+```
+mix water_on_mars.process_sensor_data "3 4 2 3 2 1 4 4 2 0 3 4 1 1 2 3 4 4"
+```
+
+The command output will be:
+
+```
+(1, 2 score: 27)
+(1, 1 score: 25)
+(2, 2 score: 23)
+```
