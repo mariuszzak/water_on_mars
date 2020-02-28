@@ -37,7 +37,7 @@ defmodule WaterOnMars.InputParser do
     parsed_values =
       input_binary
       |> String.split(" ")
-      |> Enum.map(&validate_and_cast_value/1)
+      |> Enum.map(&cast_binary_to_integer/1)
 
     if Keyword.has_key?(parsed_values, :error) do
       :error
@@ -46,7 +46,7 @@ defmodule WaterOnMars.InputParser do
     end
   end
 
-  defp validate_and_cast_value(binary_value) do
+  defp cast_binary_to_integer(binary_value) do
     case Integer.parse(binary_value) do
       {int, ""} -> {:ok, int}
       :error -> {:error, :invalid_value}
