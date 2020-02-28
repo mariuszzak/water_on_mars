@@ -3,16 +3,31 @@ defmodule WaterOnMars.InputParser do
   This module is responsible for parsing raw input data from the sensor of Curiosity rover.
   """
 
-  @type requested_results_number :: non_neg_integer()
-  @type grid_size :: non_neg_integer()
-  @type grid :: list(non_neg_integer())
-  @type ok_result :: {:ok, requested_results_number(), grid_size(), grid()}
+  defmodule Input do
+    @moduledoc """
+    The struct represents parsed input data.
+    """
 
-  @spec call(binary) :: ok_result() | {:error, :invalid_input}
+    @enforce_keys [:requested_results_number, :grid_size, :grid]
+    defstruct [:requested_results_number, :grid_size, :grid]
+
+    @type t :: %__MODULE__{
+            requested_results_number: non_neg_integer(),
+            grid_size: non_neg_integer(),
+            grid: list(non_neg_integer())
+          }
+  end
+
+  @spec call(binary) :: {:ok, Input.t()} | {:error, :invalid_input}
   def call(input_binary) do
     with {:ok, parsed_data} <- parse_input_binary(input_binary),
-         [requested_results, grid_size | [_ | _] = grid] <- parsed_data do
-      {:ok, requested_results, grid_size, grid}
+         [requested_results_number, grid_size | [_ | _] = grid] <- parsed_data do
+      {:ok,
+       %Input{
+         requested_results_number: requested_results_number,
+         grid_size: grid_size,
+         grid: grid
+       }}
     else
       _ -> {:error, :invalid_input}
     end

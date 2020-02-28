@@ -11,8 +11,13 @@ defmodule WaterOnMars.InputParserTest do
       expected_grid_size = 3
       expected_grid = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-      assert InputParser.call(input) ==
-               {:ok, expected_number_of_requested_results, expected_grid_size, expected_grid}
+      expected_result = %WaterOnMars.InputParser.Input{
+        requested_results_number: expected_number_of_requested_results,
+        grid_size: expected_grid_size,
+        grid: expected_grid
+      }
+
+      assert InputParser.call(input) == {:ok, expected_result}
     end
 
     test "returns error if input data is invalid" do
