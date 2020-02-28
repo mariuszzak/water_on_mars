@@ -7,7 +7,7 @@
 
 # Sensor Processor
 
-To run the Sensor Processor by entering the following command:
+You can run the Sensor Processor by entering the following command:
 
 ```
 mix water_on_mars.process_sensor_data "<<raw_sensor_data>>"
@@ -27,9 +27,9 @@ The command output will be:
 (2, 2 score: 23)
 ```
 
-# Server
+# Heatmap
 
-To start your Phoenix server:
+You can also process the data and generate a heatmap. In order to do this, start your Phoenix server:
 
 ```
 mix phx.server
