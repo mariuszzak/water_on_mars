@@ -1,0 +1,19 @@
+<script>
+function showScore(element)
+{
+    element.style.color="black";
+}
+</script>
+<section class="phx-hero">
+  <table>
+  <%= for row <- @heatmap do %>
+    <tr>
+    <%= for score <- row do %>
+      <td style="background: rgba(0, 0, 255, <%= score / 100 %>); color: transparent;" onclick="showScore(this)">
+        <%= score %>
+      </td>
+    <% end %>
+    </tr>
+  <% end %>
+  </table>
+</section>

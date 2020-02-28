@@ -8,22 +8,17 @@
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <%= csrf_meta_tag() %>
   </head>
-  <body>
-    <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-          </ul>
-        </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
-      </section>
-    </header>
+  <body style="background-image: url(<%= Routes.static_path(@conn, "/images/mars.jpg") %>); background-size: 100% auto;">
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+
+      <section class="phx-hero">
+        <form action="<%= Routes.page_path(WaterOnMarsWeb.Endpoint, :heatmap) %>" method="post">
+        <input id="sensor_data" name="sensor_data" type="text" placeholder="Enter sensor data">
+        <button type="submit">Generate heatmap</button>
+        </form>
+      </section>
       <%= render @view_module, @view_template, assigns %>
     </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>

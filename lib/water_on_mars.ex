@@ -17,7 +17,7 @@ defmodule WaterOnMars do
       (2, 2 score: 23)"
 
       iex> WaterOnMars.process_sensor_data("x y z")
-      "Input is invalid."
+      "raw sensor data is invalid!"
 
       iex> WaterOnMars.process_sensor_data("0 1 2")
       "requested_results_number must be greater than 0"
@@ -29,7 +29,7 @@ defmodule WaterOnMars do
          :ok <- WaterOnMars.InputValidator.call(parsed_input) do
       do_process_sensor_data(parsed_input)
     else
-      {:error, :invalid_input} -> "Input is invalid."
+      {:error, :invalid_input} -> "raw sensor data is invalid!"
       {:error, error} -> error
     end
   end
@@ -64,7 +64,7 @@ defmodule WaterOnMars do
       {:ok, [[12, 21, 16], [27, 45, 33], [24, 39, 28]]}
 
       iex> WaterOnMars.scores_grid("x y z")
-      {:error, "Input is invalid."}
+      {:error, "raw sensor data is invalid!"}
 
       iex> WaterOnMars.scores_grid("0 1 2")
       {:error, "requested_results_number must be greater than 0"}
@@ -80,7 +80,7 @@ defmodule WaterOnMars do
          :ok <- WaterOnMars.InputValidator.call(parsed_input) do
       {:ok, do_generate_scores_grid(parsed_input)}
     else
-      {:error, :invalid_input} -> {:error, "Input is invalid."}
+      {:error, :invalid_input} -> {:error, "raw sensor data is invalid!"}
       {:error, error} -> {:error, error}
     end
   end
