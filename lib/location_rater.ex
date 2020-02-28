@@ -25,12 +25,21 @@ defmodule WaterOnMars.LocationRater do
     WaterConcentrationMap.read_measurement(water_concentration_map, coordinates)
   end
 
-  @spec rate_all_locations(WaterConcentrationMap.t()) ::
-          list(%{coordinates: coordinates(), score: score()})
+  @type list_of_rated_locations :: list(%{coordinates: coordinates(), score: score()})
+
+  @spec rate_all_locations(WaterConcentrationMap.t()) :: list_of_rated_locations()
   def rate_all_locations(%{grid_size: grid_size} = water_concentration_map) do
     for x <- 0..(grid_size - 1),
         y <- 0..(grid_size - 1) do
       %{coordinates: {x, y}, score: rate_location(water_concentration_map, {x, y})}
     end
+  end
+
+  @spec select_highest_rated_locations(list_of_rated_locations(), integer()) ::
+          list_of_rated_locations()
+  def select_highest_rated_locations(list_of_rated_locations, requested_results_number) do
+    list_of_rated_locations
+    |> Enum.sort(&(&1.score >= &2.score))
+    |> Enum.take(requested_results_number)
   end
 end

@@ -46,4 +46,22 @@ defmodule WaterOnMars.LocationRaterTest do
              }
     end
   end
+
+  describe "select_highest_rated_locations/2" do
+    test "it returns the n highest rated locations sorted by score" do
+      list_of_rated_locations = [
+        %{coordinates: {0, 0}, score: 10},
+        %{coordinates: {1, 1}, score: 15},
+        %{coordinates: {1, 2}, score: 20},
+        %{coordinates: {2, 2}, score: 5},
+        %{coordinates: {2, 1}, score: 1}
+      ]
+
+      assert LocationRater.select_highest_rated_locations(list_of_rated_locations, 3) == [
+               %{coordinates: {1, 2}, score: 20},
+               %{coordinates: {1, 1}, score: 15},
+               %{coordinates: {0, 0}, score: 10}
+             ]
+    end
+  end
 end
