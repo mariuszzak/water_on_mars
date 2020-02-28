@@ -26,4 +26,26 @@ defmodule WaterOnMars.WaterConcentrationMapTest do
              }
     end
   end
+
+  describe "read_measurement/2" do
+    @map %WaterConcentrationMap{
+      grid: {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+      },
+      grid_size: 3
+    }
+
+    test "it retruns the water concentration in the specific location" do
+      assert WaterConcentrationMap.read_measurement(@map, {0, 0}) == 1
+      assert WaterConcentrationMap.read_measurement(@map, {1, 1}) == 5
+      assert WaterConcentrationMap.read_measurement(@map, {2, 1}) == 6
+    end
+
+    test "it return 0 level if the location is out of the grid" do
+      assert WaterConcentrationMap.read_measurement(@map, {-1, -1}) == 0
+      assert WaterConcentrationMap.read_measurement(@map, {3, 3}) == 0
+    end
+  end
 end

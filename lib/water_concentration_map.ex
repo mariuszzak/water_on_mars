@@ -27,4 +27,16 @@ defmodule WaterOnMars.WaterConcentrationMap do
     |> Enum.map(&List.to_tuple/1)
     |> List.to_tuple()
   end
+
+  @type coordinates :: {integer(), integer()}
+
+  @spec read_measurement(t(), coordinates()) :: integer()
+  def read_measurement(%__MODULE__{grid: grid, grid_size: grid_size}, {x, y})
+      when x >= 0 and y >= 0 and x < grid_size and y < grid_size do
+    grid
+    |> elem(y)
+    |> elem(x)
+  end
+
+  def read_measurement(_, _), do: 0
 end
