@@ -36,3 +36,30 @@ mix phx.server
 ```
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+
+# Tests
+
+You can run all tests by the following command:
+
+
+```
+mix test
+```
+
+# Dialyzer
+
+You can run Dialyzer by:
+
+
+```
+mix dialyzer
+```
+
+# Credo
+
+You can run Credo linter by:
+
+
+```
+mix credo
+```
