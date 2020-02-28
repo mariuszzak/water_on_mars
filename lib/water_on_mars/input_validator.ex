@@ -34,8 +34,7 @@ defmodule WaterOnMars.InputValidator do
   end
 
   defp validate_raw_sensor_data_size(%{grid_size: grid_size, raw_sensor_data: raw_sensor_data})
-       when length(raw_sensor_data) == grid_size * grid_size and length(raw_sensor_data) > 0 and
-              rem(length(raw_sensor_data), grid_size) == 0 do
+       when length(raw_sensor_data) == grid_size * grid_size do
     :ok
   end
 
