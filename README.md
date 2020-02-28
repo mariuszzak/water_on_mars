@@ -1,6 +1,13 @@
 # WaterOnMars
 
-To run the process sensor data you can run the following command:
+# Prerequisites
+
+  * Install Elixir
+  * Install dependencies with `mix deps.get`
+
+# Sensor Processor
+
+To run the Sensor Processor by entering the following command:
 
 ```
 mix water_on_mars.process_sensor_data "<<raw_sensor_data>>"
@@ -19,3 +26,13 @@ The command output will be:
 (1, 1 score: 25)
 (2, 2 score: 23)
 ```
+
+# Server
+
+To start your Phoenix server:
+
+```
+mix phx.server
+```
+
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
