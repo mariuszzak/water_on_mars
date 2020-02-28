@@ -9,12 +9,12 @@ defmodule WaterOnMars.InputParserTest do
 
       expected_number_of_requested_results = 1
       expected_grid_size = 3
-      expected_grid = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      expected_raw_sensor_data = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
       expected_result = %WaterOnMars.InputParser.Input{
         requested_results_number: expected_number_of_requested_results,
         grid_size: expected_grid_size,
-        grid: expected_grid
+        raw_sensor_data: expected_raw_sensor_data
       }
 
       assert InputParser.call(input) == {:ok, expected_result}

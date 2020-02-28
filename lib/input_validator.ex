@@ -9,8 +9,8 @@ defmodule WaterOnMars.InputValidator do
   def call(parsed_input) do
     with :ok <- validate_requested_results_number(parsed_input),
          :ok <- validate_grid_size(parsed_input),
-         :ok <- validate_grid(parsed_input),
-         :ok <- validate_grid_values(parsed_input) do
+         :ok <- validate_raw_sensor_data_size(parsed_input),
+         :ok <- validate_raw_sensor_data_values(parsed_input) do
       :ok
     end
   end
@@ -33,30 +33,32 @@ defmodule WaterOnMars.InputValidator do
     {:error, "grid_size must greater than 0"}
   end
 
-  defp validate_grid(%{grid_size: grid_size, grid: grid})
-       when length(grid) > 0 and rem(length(grid), grid_size) == 0 do
+  defp validate_raw_sensor_data_size(%{grid_size: grid_size, raw_sensor_data: raw_sensor_data})
+       when length(raw_sensor_data) > 0 and rem(length(raw_sensor_data), grid_size) == 0 do
     :ok
   end
 
-  defp validate_grid(_) do
-    {:error, "grid has to have the number of elements that is the multiple of the grid_size"}
+  defp validate_raw_sensor_data_size(_) do
+    {:error,
+     "raw_sensor_data has to have the number of elements that is the multiple of the grid_size"}
   end
 
-  defp validate_grid_values(%{grid: grid}) do
-    case Enum.all?(grid, &valid_grid_value?/1) do
+  defp validate_raw_sensor_data_values(%{raw_sensor_data: raw_sensor_data}) do
+    case Enum.all?(raw_sensor_data, &valid_raw_sensor_data_value?/1) do
       true ->
         :ok
 
       false ->
-        {:error, "grid has to contain only values from 1 to 9"}
+        {:error, "raw_sensor_data has to contain only values from 1 to 9"}
     end
   end
 
-  defp valid_grid_value?(grid_value) when grid_value in @valid_water_concentration_level_range do
+  defp valid_raw_sensor_data_value?(raw_sensor_data_value)
+       when raw_sensor_data_value in @valid_water_concentration_level_range do
     true
   end
 
-  defp valid_grid_value?(_) do
+  defp valid_raw_sensor_data_value?(_) do
     false
   end
 end
