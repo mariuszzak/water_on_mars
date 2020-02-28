@@ -39,6 +39,13 @@ defmodule WaterOnMars.InputValidatorTest do
                | raw_sensor_data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
              }) ==
                expected_error
+
+      assert InputValidator.call(%{
+               @valid_input
+               | grid_size: 1,
+                 raw_sensor_data: [0, 1, 3]
+             }) ==
+               expected_error
     end
 
     test "returns an error if any value in the raw_sensor_data is not from the range of 0 to 9" do
