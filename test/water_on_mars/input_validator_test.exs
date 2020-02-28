@@ -16,12 +16,12 @@ defmodule WaterOnMars.InputValidatorTest do
 
     test "returns an error if requested_results_number is invalid" do
       assert InputValidator.call(%{@valid_input | requested_results_number: 0}) ==
-               {:error, "requested_results_number must greater than 0"}
+               {:error, "requested_results_number must be greater than 0"}
     end
 
     test "returns an error if grid_size is invalid" do
       assert InputValidator.call(%{@valid_input | grid_size: 0}) ==
-               {:error, "grid_size must greater than 0"}
+               {:error, "grid_size must be greater than 0"}
     end
 
     test "returns an error if raw_sensor_data is invalid" do

@@ -21,7 +21,7 @@ defmodule WaterOnMars.InputValidator do
   end
 
   defp validate_requested_results_number(_) do
-    {:error, "requested_results_number must greater than 0"}
+    {:error, "requested_results_number must be greater than 0"}
   end
 
   defp validate_grid_size(%{grid_size: grid_size})
@@ -30,7 +30,7 @@ defmodule WaterOnMars.InputValidator do
   end
 
   defp validate_grid_size(_) do
-    {:error, "grid_size must greater than 0"}
+    {:error, "grid_size must be greater than 0"}
   end
 
   defp validate_raw_sensor_data_size(%{grid_size: grid_size, raw_sensor_data: raw_sensor_data})

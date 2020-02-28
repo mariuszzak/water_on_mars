@@ -20,7 +20,7 @@ defmodule WaterOnMars do
       "Input is invalid."
 
       iex> WaterOnMars.process_sensor_data("0 1 2")
-      "requested_results_number must greater than 0"
+      "requested_results_number must be greater than 0"
 
   """
   @spec process_sensor_data(binary()) :: binary()
