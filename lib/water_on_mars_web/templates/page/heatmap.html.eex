@@ -9,7 +9,7 @@ function showScore(element)
   <%= for row <- @heatmap do %>
     <tr>
     <%= for score <- row do %>
-      <td style="background: rgba(0, 0, 255, <%= score / 100 %>); color: transparent;" onclick="showScore(this)">
+      <td style="background: rgba(0, 0, 255, <%= score / 100 %>); color: transparent; padding: 0; text-align: center;" onclick="showScore(this)">
         <%= score %>
       </td>
     <% end %>
