@@ -1,5 +1,7 @@
 # WaterOnMars
 
+It's a solution for the [recruitment test](test.md). The objective of the exercise was not optimizing every drop of performance, but applying appropriate algorithms and data structures to the task and providing cleanly version-controlled, runnable solution that is tested, readable, employing patterns and language features of the kind that I'd want to see in code that I would be tasked to maintain. 
+
 # Prerequisites
 
   * Install Elixir
