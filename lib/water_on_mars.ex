@@ -1,4 +1,6 @@
 defmodule WaterOnMars do
+  use Boundary, deps: [], exports: []
+
   @moduledoc """
   The application is responsible for processing the row sensor data of the the Curiosity rover.
   """

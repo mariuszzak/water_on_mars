@@ -1,4 +1,5 @@
 defmodule Mix.Tasks.WaterOnMars.ProcessSensorData do
+  use Boundary, deps: [WaterOnMars]
   use Mix.Task
   @shortdoc "Processes the sensor data"
   @moduledoc ~S"""

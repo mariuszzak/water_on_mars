@@ -1,4 +1,6 @@
 defmodule WaterOnMars.Application do
+  use Boundary, deps: [WaterOnMars, WaterOnMarsWeb]
+
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
